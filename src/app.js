@@ -5,10 +5,13 @@ const db = require("../db/connection");
 
 app.get("/restaurants", async (req, res) => {
     const restaurants = await Restaurant.findAll();
-    res.json(restaurants);
-    
+    res.json(restaurants);  
 })
 
+app.get("/restaurants/:id", async (req,res) => {
+    const id = await Restaurant.findByPk(req.params.id)
+    res.json(id);
+})
 
 
 
