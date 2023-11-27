@@ -59,4 +59,9 @@ beforeAll(async() => {
         const restaurant = await  Restaurant.findAll({})
         expect(restaurant.length).toEqual(restQuantity);
       })
+      test("should check for validation", async () => {
+       const response = await request(app).post("/restaurants").send({name:""})
+       expect(response.body).toHaveProperty("errors")
+       expect(Array.isArray(response.body.errors)).toBe(true);
+      })
  })
